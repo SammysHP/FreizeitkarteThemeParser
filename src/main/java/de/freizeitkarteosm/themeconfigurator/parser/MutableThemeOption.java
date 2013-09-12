@@ -19,8 +19,8 @@ class MutableThemeOption implements ThemeOption {
 	group = null;
 	name = new HashMap<String, String>();
 	status = false;
-	startLine = 0;
-	endLine = 0;
+	startLine = -1;
+	endLine = -1;
     }
 
     public MutableThemeOption(final ThemeOptionGroup group,
