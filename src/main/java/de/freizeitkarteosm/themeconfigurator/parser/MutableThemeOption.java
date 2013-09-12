@@ -103,4 +103,9 @@ class MutableThemeOption implements ThemeOption {
         endLine = line;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

@@ -57,4 +57,9 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
         this.options.add(option);
         return this;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
