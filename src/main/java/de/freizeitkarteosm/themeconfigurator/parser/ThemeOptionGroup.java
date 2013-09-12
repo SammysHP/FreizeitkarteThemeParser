@@ -6,7 +6,7 @@ import java.util.Locale;
 public interface ThemeOptionGroup {
     public String getName();
 
-    public String getName(Locale l);
+    public String getName(Locale locale);
 
     public List<ThemeOption> getOptions();
 }
