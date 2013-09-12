@@ -12,11 +12,20 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
 
     private List<ThemeOption> options;
 
+    /**
+     * Constructs an empty group.
+     */
     public MutableThemeOptionGroup() {
         name = new HashMap<String, String>();
         options = new ArrayList<ThemeOption>();
     }
 
+    /**
+     * Constructs a group with given translated names.
+     * 
+     * @param name
+     *            Translations of the name of this group
+     */
     public MutableThemeOptionGroup(final Map<Locale, String> name) {
         this.name = new HashMap<String, String>();
         for (Locale l : name.keySet()) {
@@ -42,6 +51,15 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
         return ""; // TODO: Throw exception or return empty string?
     }
 
+    /**
+     * Adds a translation for the name of this group.
+     * 
+     * @param locale
+     *            The locale of the language of the translation
+     * @param name
+     *            The translation of the name
+     * @return This group
+     */
     public MutableThemeOptionGroup setName(final Locale locale,
             final String name) {
         this.name.put(locale.getISO3Language(), name);
@@ -53,6 +71,13 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
         return Collections.unmodifiableList(options);
     }
 
+    /**
+     * Adds an option to this group.
+     * 
+     * @param option
+     *            The option to add to this group
+     * @return This group
+     */
     public MutableThemeOptionGroup addOption(final ThemeOption option) {
         this.options.add(option);
         return this;
