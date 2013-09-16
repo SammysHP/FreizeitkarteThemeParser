@@ -9,6 +9,9 @@
   <!-- Version : 0.13 - 20.07.2013 -->
   <!-- Version : 0.14 - 10.08.2013 -->
   <!-- Version : 0.15 - 16.08.2013 -->
+  <!-- Version : 0.16 - 03.09.2013 -->
+  <!-- Version : 0.17 - 07.09.2013 -->
+  <!-- Version : 0.18 - 12.09.2013 -->
   <!-- -->
   <!-- Copyright (C) 2013 FZK-Projekt <freizeitkarte@googlemail.com> -->
   <!-- -->
@@ -33,8 +36,8 @@
   <!-- 4: Wohngebiet, Schule, Handel, Krankenhaus, Steinbruch, Golfplatz, Industrie, Raststaette, Schrebergaerten, Kulturland (Acker, Wiese), Alm/Bergwiese, Verwaltung -->
   <!-- 5: Laubwald, Park, Deponie, Heide, Geroell, Nadelwald, Mischwald, Gehoeft -->
   <!-- 6: Fels, Wiese (innerorts), Sportanlage, Zoo, Kraftwerk, Baugebiet, Flugplatz, Strand, verkehrsberuhiger Bereich, Platz, Fussgaengerzone, Station, Sand, Gletscher, Plantage, Gebuesch -->
-  <!-- 7: Vorfeld, Spielplatz, Camping, Friedhof, Kasernen, Andachtsstaette, Spielfeld/Laufbahn, Terminal, Wasser, Bahnsteig, Wasser, Spielfeld, Flussufer, Parkplatz -->
-  <!-- 8: Sumpf, Dock, Gefahrenzone, Yachthafen, Anlegestelle, Militaer -->
+  <!-- 7: Vorfeld, Spielplatz, Camping, Friedhof, Kasernen, Andachtsstaette, Spielfeld/Laufbahn, Terminal, Wasser, Bahnsteig, Wasser, Spielfeld, Flussufer, Watt, Parkplatz -->
+  <!-- 8: Sumpf, Grasland, Dock, Gefahrenzone, Yachthafen, Anlegestelle, Militaer -->
   <!-- 9: Gebaeude, Staudamm/-mauer, Buhne, Naturschutzgebiet -->
   <!-- -->
   <!-- Konzeptionelle Anmerkungen zum Thema "Flaechen": -->
@@ -89,6 +92,12 @@
 ###STRASSENBAHN@@@PUNKTE|||deu===Straßenbahn|||eng===Tram
 ###U-BAHN@@@PUNKTE|||deu===U-Bahn|||eng===Subway
 ###UNTERKUNFT@@@PUNKTE|||deu===Unterkunft|||eng===Accommodation
+###INFORMATION@@@PUNKTE|||deu===Information|||eng===Information
+###BAUM@@@PUNKTE|||deu===Baum|||eng===Tree
+###SCHLAGBAUM@@@PUNKTE|||deu===Schlagbaum|||eng===Liftgate
+###TOR@@@PUNKTE|||deu===Tor|||eng===Gate
+###MUSEUM@@@PUNKTE|||deu===Museum|||eng===Museum
+###AUSSICHTSPUNKT@@@PUNKTE|||deu===Aussichtspunkt|||eng===Viewpoint
 ENDE_THEME_CONFIGURATOR-->
   <!-- -->
   <!-- -->
@@ -153,6 +162,29 @@ ENDE_THEME_CONFIGURATOR-->
     <rule e="way" k="natural" v="mud_micro|mud_nano|mud" zoom-min="18">
       <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
     </rule>
+    <!-- -->
+    <!-- +++ Watt +++ -->
+    <!-- Watt. -->
+    <rule e="way" k="natural" v="watt_huge|watt_large|watt_medium|watt_small|watt_tiny|watt_micro|watt_nano|watt" closed="yes">
+      <area src="file:patterns/watt.png"/>
+    </rule>
+    <!-- Beschriftung zu dominant.
+    <rule e="way" k="natural" v="watt_huge|watt_large" zoom-min="14">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_medium" zoom-min="15">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_small" zoom-min="16">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_tiny" zoom-min="17">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_micro|watt_nano|watt" zoom-min="18">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    -->
     <!-- -->
     <!-- +++ Wohngebiet +++ -->
     <!-- Wohngebiet. -->
@@ -942,6 +974,29 @@ ENDE_THEME_CONFIGURATOR-->
       </rule>
     </rule>
     <!-- -->
+    <!-- +++ Watt +++ -->
+    <!-- Watt (wird nach den Wasserflaechen gezeichnet, somit auch in Flusmuendungen oder Seen moeglich). -->
+    <rule e="way" k="natural" v="watt_huge|watt_large|watt_medium|watt_small|watt_tiny|watt_micro|watt_nano|watt" closed="yes">
+      <area src="file:patterns/watt.png"/>
+    </rule>
+    <!-- Beschriftung zu dominant.
+    <rule e="way" k="natural" v="watt_huge|watt_large" zoom-min="14">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_medium" zoom-min="15">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_small" zoom-min="16">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_tiny" zoom-min="17">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    <rule e="way" k="natural" v="watt_micro|watt_nano|watt" zoom-min="18">
+      <caption k="name" font-style="normal" font-size="15" fill="#404040"/>
+    </rule>
+    -->
+    <!-- -->
     <!-- +++ Sumpf +++ -->
     <!-- (marsh) Marsch (Feuchtgebiet, Sumpf, Moor, etc.) veraltet, siehe natural=wetland). -->
     <!-- (wetland) Feuchtgebiet (Sumpf, Moor, Ried, Marsch, Aue, Roehricht, Watt, Salzwiese, Mangrove, naturbelassene -->
@@ -980,6 +1035,27 @@ ENDE_THEME_CONFIGURATOR-->
       <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
     </rule>
     <rule e="way" k="natural" v="wetland_micro|wetland_nano|wetland" zoom-min="18">
+      <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
+    </rule>
+    <!-- -->
+    <!-- +++ Grasland +++ -->
+    <!-- Unkultivierte Landschaft die mit Graesern und Kraeutern bewachsen ist. Moore und kultivierte Wiesen werden hiervon ausgeschlossen. -->
+    <rule e="way" k="natural" v="grassland_huge|grassland_large|grassland_medium|grassland_small|grassland_tiny|grassland_micro|grassland_nano|grassland" closed="yes">
+      <area fill="#c6e4b4"/>
+    </rule>
+    <rule e="way" k="natural" v="grassland_huge|grassland_large" zoom-min="14">
+      <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
+    </rule>
+    <rule e="way" k="natural" v="grassland_medium" zoom-min="15">
+      <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
+    </rule>
+    <rule e="way" k="natural" v="grassland_small" zoom-min="16">
+      <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
+    </rule>
+    <rule e="way" k="natural" v="grassland_tiny" zoom-min="17">
+      <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
+    </rule>
+    <rule e="way" k="natural" v="grassland_micro|grassland_nano|grassland" zoom-min="18">
       <caption k="name" font-style="normal" font-size="15" fill="#0000ff"/>
     </rule>
     <!-- -->
@@ -1199,17 +1275,21 @@ ENDE_THEME_CONFIGURATOR-->
     <rule e="way" k="building" v="gebaeude_speziell" closed="yes" zoom-min="15">
       <area fill="#c1b0af" stroke="#aa94a4" stroke-width="0.2"/>
       <!-- Gebaeude als Informationspunkt -->
+      <!-- [BEGINN_KONFIG_INFORMATION] -->
       <rule e="way" k="tourism" v="information_gebaeude" zoom-min="16" zoom-max="18">
         <symbol src="file:symbols/information.png"/>
       </rule>
+      <!-- [ENDE_KONFIG_INFORMATION] -->
       <!-- Gebaeude als Industrieanlage -->
       <!--<rule e="way" k="man_made" v="works_gebaeude" zoom-min="16" zoom-max="18">
         <symbol src="file:symbols/industrieanlage.png"/>
       </rule>-->
       <!-- Gebaeude als Aussichtspunkt -->
+      <!-- [BEGINN_KONFIG_AUSSICHTSPUNKT] -->
       <rule e="way" k="tourism" v="viewpoint_gebaeude" zoom-min="16" zoom-max="18">
         <symbol src="file:symbols/aussichtspunkt.png"/>
       </rule>
+      <!-- [ENDE_KONFIG_AUSSICHTSPUNKT] -->
       <!-- Gebaeude als Polizeistation -->
       <rule e="way" k="amenity" v="police_gebaeude" zoom-min="15" zoom-max="18">
         <symbol src="file:symbols/polizei.png"/>
@@ -1219,9 +1299,11 @@ ENDE_THEME_CONFIGURATOR-->
         <symbol src="file:symbols/tankstelle.png"/>
       </rule>
       <!-- Gebaeude als Museum -->
+      <!-- [BEGINN_KONFIG_MUSEUM] -->
       <rule e="way" k="tourism" v="museum_gebaeude" zoom-min="16" zoom-max="18">
         <symbol src="file:symbols/museum.png"/>
       </rule>
+      <!-- [ENDE_KONFIG_MUSEUM] -->
       <!-- Gebaeude als Hotel-Restaurant -->
       <rule e="way" k="tourism" v="hotel_restaurant_gebaeude" zoom-min="16" zoom-max="18">
         <symbol src="file:symbols/hotel-restaurant.png"/>
@@ -1335,12 +1417,14 @@ ENDE_THEME_CONFIGURATOR-->
     <rule e="way" k="tourism" v="museum" zoom-min="15">
       <line stroke="#aa94a4" stroke-width="0.2"/>
     </rule>
+    <!-- [BEGINN_KONFIG_MUSEUM] -->
     <rule e="way" k="tourism" v="museum" zoom-min="16" zoom-max="18">
       <symbol src="file:symbols/museum.png"/>
     </rule>
     <rule e="way" k="tourism" v="museum" zoom-min="19">
       <caption k="name" font-style="normal" font-size="13" fill="#404040"/>
     </rule>
+    <!-- [ENDE_KONFIG_MUSEUM] -->
     <!-- -->
     <rule e="way" k="amenity" v="biergarten" zoom-min="15">
       <line stroke="#aa94a4" stroke-width="0.2"/>
@@ -1377,6 +1461,12 @@ ENDE_THEME_CONFIGURATOR-->
     <!-- -->
     <!-- +++ Buhne (auch als Linie moeglich) +++ -->
     <rule e="way" k="man_made" v="groyne" closed="yes">
+      <area fill="#aaaaaa"/>
+    </rule>
+    <!-- -->
+    <!-- +++ Wellenbrecher fuer den Kuesten- / Hafenschutz (auch als Linie moeglich) +++ -->
+    <rule e="way" k="man_made" v="breakwater" closed="yes">
+      <!-- <area fill="#cc9966"/> -->
       <area fill="#aaaaaa"/>
     </rule>
     <!-- -->
@@ -1452,6 +1542,11 @@ ENDE_THEME_CONFIGURATOR-->
       <rule e="way" k="*" v="groyne" closed="no">
         <line stroke="#aaaaaa" stroke-width="1.2"/>
       </rule>
+      <!-- +++ Wellenbrecher fuer den Kuesten- / Hafenschutz (auch als Flaeche moeglich; wird auch fuer Lahnung verwendet) +++ -->
+      <rule e="way" k="*" v="breakwater" closed="no">
+        <!-- <line stroke="#cc9966" stroke-width="0.6"/> -->
+        <line stroke="#aaaaaa" stroke-width="0.6"/>
+      </rule>
       <!-- +++ Anleger / Pier +++ -->
       <rule e="way" k="*" v="pier">
         <line stroke="#f1eee8" stroke-width="0.6" stroke-linecap="butt"/>
@@ -1516,7 +1611,7 @@ ENDE_THEME_CONFIGURATOR-->
           <line stroke="#bd6500" stroke-width="0.6" stroke-dasharray="3,3" stroke-linecap="butt"/>
         </rule>
         <!-- +++ Stufen / Treppen auf Fuss- / Wanderwegen - Tunnel +++ -->
-        <rule e="way" k="*" v="steps_tunnel">
+        <rule e="way" k="*" v="steps_tunnel" zoom-min="15">
           <line stroke="#000000" stroke-width="1.0" stroke-dasharray="10,4" stroke-linecap="butt"/>
           <line stroke="#f1eee9" stroke-width="0.6" stroke-linecap="butt"/>
           <line stroke="#ff656a" stroke-width="0.6" stroke-dasharray="3,3" stroke-linecap="butt"/>
@@ -1687,13 +1782,13 @@ ENDE_THEME_CONFIGURATOR-->
           </rule>
         </rule>
         <!-- +++ Stufen / Treppen auf Fuss- / Wanderwegen - Bruecke +++ -->
-        <rule e="way" k="*" v="steps_bridge">
+        <rule e="way" k="*" v="steps_bridge" zoom-min="15">
           <line stroke="#000000" stroke-width="1.0" stroke-linecap="butt"/>
           <line stroke="#f1eee9" stroke-width="0.6" stroke-linecap="butt"/>
           <line stroke="#ff656a" stroke-width="0.6" stroke-dasharray="3,3" stroke-linecap="butt"/>
         </rule>
         <!-- +++ Stufen / Treppen auf Fuss- / Wanderwegen +++ -->
-        <rule e="way" k="*" v="steps">
+        <rule e="way" k="*" v="steps" zoom-min="15">
           <line stroke="#f1eee9" stroke-width="0.6" stroke-linecap="butt"/>
           <line stroke="#ff656a" stroke-width="0.6" stroke-dasharray="3,3" stroke-linecap="butt"/>
           <rule e="way" k="*" v="*" zoom-min="15">
@@ -2496,12 +2591,14 @@ ENDE_THEME_CONFIGURATOR-->
       <!-- [ENDE_KONFIG_UNTERKUNFT] -->
       <!-- -->
       <!-- (Touristen-) Information. -->
+      <!-- [BEGINN_KONFIG_INFORMATION] -->
       <rule e="node" k="*" v="information" zoom-min="17">
         <symbol src="file:symbols/information.png"/>
       </rule>
       <rule e="node" k="*" v="information" zoom-min="19">
         <caption k="name" dy="25" font-style="normal" font-size="13" fill="#007DD2" stroke="#ffffff" stroke-width="3.0"/>
       </rule>
+      <!-- [ENDE_KONFIG_INFORMATION] -->
       <!-- -->
       <!-- Motel. -->
       <!-- [BEGINN_KONFIG_UNTERKUNFT] -->
@@ -2514,12 +2611,14 @@ ENDE_THEME_CONFIGURATOR-->
       <!-- [ENDE_KONFIG_UNTERKUNFT] -->
       <!-- -->
       <!-- Museum. -->
+      <!-- [BEGINN_KONFIG_MUSEUM] -->
       <rule e="node" k="*" v="museum" zoom-min="16">
         <symbol src="file:symbols/museum.png"/>
       </rule>
       <rule e="node" k="*" v="museum" zoom-min="19">
         <caption k="name" dy="25" font-style="normal" font-size="13" fill="#0069B6" stroke="#ffffff" stroke-width="3.0"/>
       </rule>
+      <!-- [ENDE_KONFIG_MUSEUM] -->
       <!-- -->
       <!-- Rastplatz (Picknick). -->
       <rule e="node" k="*" v="picnic_site" zoom-min="16" zoom-max="18">
@@ -2540,12 +2639,14 @@ ENDE_THEME_CONFIGURATOR-->
       </rule>
       <!-- -->
       <!-- Aussichtspunkt. -->
+      <!-- [BEGINN_KONFIG_AUSSICHTSPUNKT] -->
       <rule e="node" k="*" v="viewpoint" zoom-min="16">
         <symbol src="file:symbols/aussichtspunkt.png"/>
       </rule>
       <rule e="node" k="*" v="viewpoint" zoom-min="19">
         <caption k="name" dy="25" font-style="normal" font-size="13" fill="#672400" stroke="#ffffff" stroke-width="3.0"/>
       </rule>
+      <!-- [ENDE_KONFIG_AUSSICHTSPUNKT] -->
       <!-- -->
       <!-- Zoologischer Garten (Zoo), Tierpark. -->
       <rule e="node" k="*" v="zoo" zoom-min="16" zoom-max="18">
@@ -2698,9 +2799,11 @@ ENDE_THEME_CONFIGURATOR-->
       </rule>
       <!-- -->
       <!-- Baum. -->
+      <!-- [BEGINN_KONFIG_BAUM] -->
       <rule e="node" k="*" v="tree" zoom-min="17">
         <circle r="0.3" scale-radius="true" fill="#69c274" stroke="#69c274" stroke-width="0.2"/>
       </rule>
+      <!-- [ENDE_KONFIG_BAUM] -->
       <!-- -->
       <!-- Vulkan (ruhend, erloschen oder aktiv). -->
       <rule e="node" k="*" v="volcano" zoom-min="16" zoom-max="17">
@@ -4485,14 +4588,18 @@ ENDE_THEME_CONFIGURATOR-->
       </rule>
       <!-- -->
       <!-- Tor, Schranke oder sonstige Absperrung, die geoeffnet werden kann. -->
+      <!-- [BEGINN_KONFIG_TOR] -->
       <rule e="node" k="*" v="gate" zoom-min="16">
         <symbol src="file:symbols/tor.png"/>
       </rule>
+      <!-- [ENDE_KONFIG_TOR] -->
       <!-- -->
       <!-- Schlagbaum. -->
+      <!-- [BEGINN_KONFIG_SCHLAGBAUM] -->
       <rule e="node" k="*" v="lift_gate" zoom-min="16">
         <symbol src="file:symbols/schlagbaum.png"/>
       </rule>
+      <!-- [ENDE_KONFIG_SCHLAGBAUM] -->
     </rule>
     <!-- -->
     <!-- +++ BESONDERES +++ -->
