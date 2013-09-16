@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ThemeEditor {
@@ -79,14 +78,7 @@ public class ThemeEditor {
      * @return List of all available options
      */
     public List<ThemeOption> getOptions() {
-        List<ThemeOption> options = new ArrayList<ThemeOption>();
-
-        List<ThemeOptionGroup> groups = theme.getGroups();
-        for (ThemeOptionGroup group : groups) {
-            options.addAll(group.getOptions());
-        }
-
-        return options;
+        return theme.getOptions();
     }
 
     /**
@@ -115,5 +107,14 @@ public class ThemeEditor {
      */
     public void setFile(File file) {
         this.file = file;
+    }
+
+    /**
+     * Returns a theme with all options applied.
+     * 
+     * @return Theme with all options applied
+     */
+    public String getTheme() {
+        return theme.compile();
     }
 }

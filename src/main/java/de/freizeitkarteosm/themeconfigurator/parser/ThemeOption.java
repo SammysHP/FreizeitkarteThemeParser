@@ -56,4 +56,11 @@ public interface ThemeOption {
      * @return The last line of the corresponding section
      */
     public int getEndLine();
+
+    /**
+     * Get the id of this option.
+     * 
+     * @return The id of this option
+     */
+    public String getId();
 }

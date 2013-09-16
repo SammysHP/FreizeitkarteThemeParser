@@ -16,12 +16,10 @@ import org.junit.Test;
 public class ThemeTest {
     private static final File EXAMPLE_THEME = new File("src/test/resources/freizeitkarte.xml");
 
-    @Test
-    public void parse() throws IOException {
-        // Load file and parse theme
+    private static String loadFile(final File file) throws IOException {
         final StringBuilder content = new StringBuilder();
 
-        final FileReader fileReader = new FileReader(EXAMPLE_THEME);
+        final FileReader fileReader = new FileReader(file);
         final BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
         while ((line = bufferedReader.readLine()) != null) {
@@ -30,16 +28,23 @@ public class ThemeTest {
         }
         bufferedReader.close();
 
-        Theme theme = new Theme(content.toString());
+        return content.toString();
+    }
+
+    @Test
+    public void parse() throws IOException {
+        final Theme theme = new Theme(loadFile(EXAMPLE_THEME));
 
         // Groups
         final List<ThemeOptionGroup> groups = theme.getGroups();
+        assertEquals(3, groups.size());
 
         assertEquals("Flächen", groups.get(0).getName(Locale.GERMAN));
         assertEquals("Punkte", groups.get(2).getName(Locale.GERMAN));
 
         // Options
         final List<ThemeOption> options = groups.get(0).getOptions();
+        assertEquals(2, options.size());
         ThemeOption option;
 
         option = options.get(0);
@@ -53,5 +58,58 @@ public class ThemeTest {
         assertEquals(1477, option.getStartLine());
         assertEquals(1484, option.getEndLine());
         assertTrue(option.getStatus());
+    }
+
+    @Test
+    public void compileUnmodified() throws IOException {
+        final Theme themeA = new Theme(loadFile(EXAMPLE_THEME));
+        final Theme themeB = new Theme(themeA.compile());
+
+        final List<ThemeOption> optionsA = themeA.getOptions();
+        final List<ThemeOption> optionsB = themeB.getOptions();
+
+        assertEquals(optionsA.size(), optionsB.size());
+
+        for (int i = 0; i < optionsA.size(); i++) {
+            ThemeOption optionA = optionsA.get(i);
+            ThemeOption optionB = optionsB.get(i);
+
+            assertEquals(optionA.getId(), optionB.getId());
+            assertEquals(optionA.getStatus(), optionB.getStatus());
+        }
+    }
+
+    @Test
+    public void compileModified() throws IOException {
+        final Theme themeA = new Theme(loadFile(EXAMPLE_THEME));
+        final List<ThemeOption> optionsA = themeA.getOptions();
+
+        // enable all
+        for (ThemeOption option : optionsA) {
+            option.enable();
+        }
+
+        final Theme themeB = new Theme(themeA.compile());
+        final List<ThemeOption> optionsB = themeB.getOptions();
+
+        assertEquals(optionsA.size(), optionsB.size());
+
+        for (ThemeOption option : optionsB) {
+            assertTrue(option.getStatus());
+        }
+
+        // disable all
+        for (ThemeOption option : optionsA) {
+            option.disable();
+        }
+
+        final Theme themeC = new Theme(themeA.compile());
+        final List<ThemeOption> optionsC = themeC.getOptions();
+
+        assertEquals(optionsA.size(), optionsC.size());
+
+        for (ThemeOption option : optionsC) {
+            assertFalse(option.getStatus());
+        }
     }
 }

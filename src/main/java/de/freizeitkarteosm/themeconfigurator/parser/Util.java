@@ -30,4 +30,21 @@ class Util {
         // neither requested language nor English available
         return "";
     }
+
+    public static String combine(final String glue, final String... in) {
+        final int length = in.length;
+
+        if (length == 0) {
+            return null;
+        }
+
+        final StringBuilder out = new StringBuilder();
+        out.append(in[0]);
+
+        for (int i = 1; i < length; i++) {
+            out.append(glue).append(in[i]);
+        }
+
+        return out.toString();
+    }
 }

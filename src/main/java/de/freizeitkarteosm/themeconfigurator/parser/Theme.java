@@ -30,6 +30,12 @@ class Theme {
     // We use a LinkedHashMap to preserve the order of the groups as they are in the theme file.
     private final LinkedHashMap<String, MutableThemeOptionGroup> groups;
 
+    /**
+     * Parses a theme from a given string.
+     * 
+     * @param theme
+     *            The theme xml
+     */
     public Theme(final String theme) {
         this.theme = theme;
         lineTheme = theme.split("\n");
@@ -87,7 +93,7 @@ class Theme {
 
             final String patternStart = PATTERN_OPTION_START_PRE + optionId + PATTERN_OPTION_START_POST;
             final String patternEnd = PATTERN_OPTION_END_PRE + optionId + PATTERN_OPTION_END_POST;
-            
+
             for (int i = 0; i < lineTheme.length; i++) {
                 if (lineTheme[i].contains(patternStart)) {
                     startLine = i;
@@ -105,10 +111,15 @@ class Theme {
             }
 
             final MutableThemeOptionGroup group = groups.get(groupId);
-            group.addOption(new MutableThemeOption(group, names, status, startLine, endLine));
+            group.addOption(new MutableThemeOption(group, names, optionId, status, startLine, endLine));
         }
     }
 
+    /**
+     * Returns a list of all groups.
+     * 
+     * @return List of all groups
+     */
     public List<ThemeOptionGroup> getGroups() {
         List<ThemeOptionGroup> list = new ArrayList<ThemeOptionGroup>();
 
@@ -117,5 +128,34 @@ class Theme {
         }
 
         return Collections.unmodifiableList(list);
+    }
+
+    /**
+     * Returns a list of all available options.
+     * 
+     * @return List of all available options
+     */
+    public List<ThemeOption> getOptions() {
+        List<ThemeOption> options = new ArrayList<ThemeOption>();
+
+        for (ThemeOptionGroup group : getGroups()) {
+            options.addAll(group.getOptions());
+        }
+
+        return Collections.unmodifiableList(options);
+    }
+
+    /**
+     * Returns a theme with all options applied.
+     * 
+     * @return Theme with all options applied
+     */
+    public String compile() {
+        for (ThemeOption option : getOptions()) {
+            lineTheme[option.getStartLine()] = PATTERN_COMMENT_START + ' ' + PATTERN_OPTION_START_PRE + option.getId() + PATTERN_OPTION_START_POST + (option.getStatus() ? ' ' + PATTERN_COMMENT_END : "");
+            lineTheme[option.getEndLine()] = (option.getStatus() ? PATTERN_COMMENT_START + ' ' : "") + PATTERN_OPTION_END_PRE + option.getId() + PATTERN_OPTION_END_POST + ' ' + PATTERN_COMMENT_END;
+        }
+
+        return Util.combine("\n", lineTheme);
     }
 }

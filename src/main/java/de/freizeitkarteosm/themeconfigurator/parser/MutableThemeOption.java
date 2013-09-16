@@ -15,6 +15,8 @@ class MutableThemeOption implements ThemeOption {
 
     private int endLine;
 
+    private String id;
+
     /**
      * Constructs an empty option.
      */
@@ -33,6 +35,8 @@ class MutableThemeOption implements ThemeOption {
      *            Reference to the group of this option
      * @param name
      *            Translations of the name of this option
+     * @param id
+     *            The id of this option used to mark the section
      * @param status
      *            If this option is enabled or not
      * @param startLine
@@ -41,8 +45,9 @@ class MutableThemeOption implements ThemeOption {
      *            The last line of the corresponding section
      */
     public MutableThemeOption(final ThemeOptionGroup group,
-            final Map<Locale, String> name, final boolean status,
-            final int startLine, final int endLine) {
+            final Map<Locale, String> name, final String id,
+            final boolean status, final int startLine,
+            final int endLine) {
         this.group = group;
 
         this.name = new HashMap<String, String>();
@@ -50,6 +55,7 @@ class MutableThemeOption implements ThemeOption {
             this.name.put(l.getISO3Language(), name.get(l));
         }
 
+        this.id = id;
         this.status = status;
         this.startLine = startLine;
         this.endLine = endLine;
@@ -148,5 +154,22 @@ class MutableThemeOption implements ThemeOption {
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id of this option.
+     * 
+     * @param id
+     *            The id of this option
+     * @return This option
+     */
+    public MutableThemeOption setId(final String id) {
+        this.id = id;
+        return this;
     }
 }
