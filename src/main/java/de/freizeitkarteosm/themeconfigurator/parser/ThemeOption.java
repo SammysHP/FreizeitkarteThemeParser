@@ -14,6 +14,11 @@ public interface ThemeOption {
     public void disable();
 
     /**
+     * Sets the status of this option.
+     */
+    public void setStatus(boolean status);
+
+    /**
      * Return the status of this option.
      * 
      * @return true, if option is enabled

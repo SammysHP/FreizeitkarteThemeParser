@@ -172,4 +172,9 @@ class MutableThemeOption implements ThemeOption {
         this.id = id;
         return this;
     }
+
+    @Override
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
