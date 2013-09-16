@@ -2,7 +2,7 @@ package de.freizeitkarteosm.themeconfigurator.parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -16,7 +16,8 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
      * Constructs an empty group.
      */
     public MutableThemeOptionGroup() {
-        name = new HashMap<String, String>();
+        // We use a LinkedHashMap to preserve the order of the options as they are in the theme file.
+        name = new LinkedHashMap<String, String>();
         options = new ArrayList<ThemeOption>();
     }
 
@@ -27,7 +28,8 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
      *            Translations of the name of this group
      */
     public MutableThemeOptionGroup(final Map<Locale, String> name) {
-        this.name = new HashMap<String, String>();
+        // We use a LinkedHashMap to preserve the order of the options as they are in the theme file.
+        this.name = new LinkedHashMap<String, String>();
         for (Locale l : name.keySet()) {
             this.name.put(l.getISO3Language(), name.get(l));
         }

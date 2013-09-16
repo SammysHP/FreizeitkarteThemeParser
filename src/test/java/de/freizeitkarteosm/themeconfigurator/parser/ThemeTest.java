@@ -1,6 +1,8 @@
 package de.freizeitkarteosm.themeconfigurator.parser;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,10 +32,26 @@ public class ThemeTest {
 
         Theme theme = new Theme(content.toString());
 
-        // Groups and order of groups
-        List<ThemeOptionGroup> groups = theme.getGroups();
+        // Groups
+        final List<ThemeOptionGroup> groups = theme.getGroups();
 
         assertEquals("Flächen", groups.get(0).getName(Locale.GERMAN));
         assertEquals("Punkte", groups.get(2).getName(Locale.GERMAN));
+
+        // Options
+        final List<ThemeOption> options = groups.get(0).getOptions();
+        ThemeOption option;
+
+        option = options.get(0);
+        assertEquals("Ackerland", option.getName(Locale.GERMAN));
+        assertEquals(316, option.getStartLine());
+        assertEquals(326, option.getEndLine());
+        assertFalse(option.getStatus());
+
+        option = options.get(1);
+        assertEquals("Naturschutzgebiete", option.getName(Locale.GERMAN));
+        assertEquals(1477, option.getStartLine());
+        assertEquals(1484, option.getEndLine());
+        assertTrue(option.getStatus());
     }
 }

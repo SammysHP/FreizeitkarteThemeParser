@@ -15,13 +15,24 @@ class Theme {
     private static final Pattern PATTERN_HEADER_GROUP = Pattern.compile("^\\s*@@@(.+?)\\|\\|\\|(.+)", Pattern.MULTILINE);
     private static final Pattern PATTERN_HEADER_OPTION = Pattern.compile("^\\s*###(.+?)@@@(.+?)\\|\\|\\|(.+)", Pattern.MULTILINE);
 
+    private static final String PATTERN_OPTION_START_PRE = "[BEGINN_KONFIG_";
+    private static final String PATTERN_OPTION_START_POST = "]";
+
+    private static final String PATTERN_OPTION_END_PRE = "[ENDE_KONFIG_";
+    private static final String PATTERN_OPTION_END_POST = "]";
+
+    private static final String PATTERN_COMMENT_START = "<!--";
+    private static final String PATTERN_COMMENT_END = "-->";
+
     private final String theme;
+    private final String[] lineTheme;
 
     // We use a LinkedHashMap to preserve the order of the groups as they are in the theme file.
     private final LinkedHashMap<String, MutableThemeOptionGroup> groups;
 
     public Theme(final String theme) {
         this.theme = theme;
+        lineTheme = theme.split("\n");
         groups = new LinkedHashMap<String, MutableThemeOptionGroup>();
 
         parse();
@@ -30,12 +41,14 @@ class Theme {
     private void parse() {
         Matcher matcher;
 
+        // extract header
         matcher = PATTERN_HEADER.matcher(theme);
         if (!matcher.find()) {
             throw new RuntimeException("No theme header found!");
         }
         final String header = matcher.group(1);
 
+        // extract groups
         matcher = PATTERN_HEADER_GROUP.matcher(header);
         while (matcher.find()) {
             final String id = matcher.group(1);
@@ -48,6 +61,51 @@ class Theme {
             }
 
             groups.put(id, new MutableThemeOptionGroup(names));
+        }
+
+        // extract options
+        matcher = PATTERN_HEADER_OPTION.matcher(header);
+        while (matcher.find()) {
+            final String optionId = matcher.group(1);
+            final String groupId = matcher.group(2);
+            final String[] translations = matcher.group(3).split("\\|\\|\\|");
+
+            if (!groups.containsKey(groupId)) {
+                System.out.println("Group \"" + groupId + "\" for option \"" + optionId + "\" not found, skipping.");
+                continue;
+            }
+
+            final Map<Locale, String> names = new HashMap<Locale, String>();
+            for (String t : translations) {
+                final String[] tt = t.split("===");
+                names.put(Locale.forLanguageTag(tt[0]), tt[1]);
+            }
+
+            int startLine = -1;
+            int endLine = -1;
+            boolean status = false;
+
+            final String patternStart = PATTERN_OPTION_START_PRE + optionId + PATTERN_OPTION_START_POST;
+            final String patternEnd = PATTERN_OPTION_END_PRE + optionId + PATTERN_OPTION_END_POST;
+            
+            for (int i = 0; i < lineTheme.length; i++) {
+                if (lineTheme[i].contains(patternStart)) {
+                    startLine = i;
+                    status = lineTheme[i].endsWith(PATTERN_COMMENT_END);
+                }
+
+                if (lineTheme[i].contains(patternEnd)) {
+                    endLine = i;
+                }
+            }
+
+            if (startLine == -1 || endLine == -1) {
+                System.out.println("Start or end line for option \"" + optionId + "\" not found, skipping.");
+                continue;
+            }
+
+            final MutableThemeOptionGroup group = groups.get(groupId);
+            group.addOption(new MutableThemeOption(group, names, status, startLine, endLine));
         }
     }
 
