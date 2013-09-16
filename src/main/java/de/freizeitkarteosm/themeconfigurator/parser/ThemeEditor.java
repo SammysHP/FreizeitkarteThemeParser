@@ -1,9 +1,11 @@
 package de.freizeitkarteosm.themeconfigurator.parser;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -53,8 +55,10 @@ public class ThemeEditor {
 
     /**
      * Saves the theme.
+     * 
+     * @throws IOException
      */
-    public void save() {
+    public void save() throws IOException {
         save(file);
     }
 
@@ -63,13 +67,17 @@ public class ThemeEditor {
      * 
      * @param file
      *            The filename where the theme should be stored
+     * @throws IOException
      */
-    public void save(File file) {
+    public void save(File file) throws IOException {
         if (file == null) {
             throw new RuntimeException("No filename set!");
         }
 
-        // TODO
+        final FileWriter fileWriter = new FileWriter(file);
+        final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(theme.compile());
+        bufferedWriter.close();
     }
 
     /**
