@@ -89,18 +89,12 @@ class MutableThemeOption implements ThemeOption {
 
     @Override
     public String getName() {
-        return getName(Locale.getDefault());
+        return Util.getTranslation(name);
     }
 
     @Override
     public String getName(Locale locale) {
-        final String language = locale.getISO3Language();
-
-        if (name.containsKey(language)) {
-            return name.get(language);
-        }
-
-        return ""; // TODO: Throw exception or return emty string?
+        return Util.getTranslation(name, locale);
     }
 
     /**
