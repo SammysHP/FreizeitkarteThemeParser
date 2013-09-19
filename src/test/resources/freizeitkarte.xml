@@ -74,30 +74,30 @@
   <!-- ||| = trennt mehrere Sprachtexte voneinander -->
   <!-- -->
 <!--BEGINN_THEME_CONFIGURATOR
-@@@FLAECHEN|||deu===Flächen|||eng===Areas
-@@@LINIEN|||deu===Linien|||eng===Lines
-@@@PUNKTE|||deu===Punkte|||eng===Points
-###ACKERLAND@@@FLAECHEN|||deu===Ackerland|||eng===Farmland
-###NATURSCHUTZGEBIET@@@FLAECHEN|||deu===Naturschutzgebiete|||eng===Nature reserves
-###BUNDESLANDGRENZE@@@LINIEN|||deu===Bundeslandgrenzen (4)|||eng===Federal states borders (4)
-###GEMEINDEGRENZE@@@LINIEN|||deu===Gemeindegrenzen (7,8)|||eng===City-districts (7,8)
-###HOEHENLINIE@@@LINIEN|||deu===Höhenlinien|||eng===Contours
-###KREISGRENZE@@@LINIEN|||deu===Kreisgrenzen (6)|||eng===County borders (6)
-###REGIERUNGSBEZIRKSGRENZE|||LINIEN###deu===Regierungsbezirksgrenzen (5)|||eng===State-district borders (5)
-###STAATSGRENZE@@@LINIEN|||deu===Staatsgrenzen (2)|||eng===National borders (2)
-###UEBERLANDLEITUNG@@@LINIEN|||deu===Überlandleitungen|||eng===Transmission lines
-###ANBETUNGSORT@@@PUNKTE|||deu===Anbetungsorte|||eng===Place of worship
-###BUS@@@PUNKTE|||deu===Bus|||eng===Bus
-###GELDAUTOMAT@@@PUNKTE|||deu===Geldautomat|||eng===Atm
-###STRASSENBAHN@@@PUNKTE|||deu===Straßenbahn|||eng===Tram
-###U-BAHN@@@PUNKTE|||deu===U-Bahn|||eng===Subway
-###UNTERKUNFT@@@PUNKTE|||deu===Unterkunft|||eng===Accommodation
-###INFORMATION@@@PUNKTE|||deu===Information|||eng===Information
-###BAUM@@@PUNKTE|||deu===Baum|||eng===Tree
-###SCHLAGBAUM@@@PUNKTE|||deu===Schlagbaum|||eng===Liftgate
-###TOR@@@PUNKTE|||deu===Tor|||eng===Gate
-###MUSEUM@@@PUNKTE|||deu===Museum|||eng===Museum
-###AUSSICHTSPUNKT@@@PUNKTE|||deu===Aussichtspunkt|||eng===Viewpoint
+@@@FLAECHEN|||de===Flächen|||en===Areas
+@@@LINIEN|||de===Linien|||en===Lines
+@@@PUNKTE|||de===Punkte|||en===Points
+###ACKERLAND@@@FLAECHEN|||de===Ackerland|||en===Farmland
+###NATURSCHUTZGEBIET@@@FLAECHEN|||de===Naturschutzgebiete|||en===Nature reserves
+###BUNDESLANDGRENZE@@@LINIEN|||de===Bundeslandgrenzen (4)|||en===Federal states borders (4)
+###GEMEINDEGRENZE@@@LINIEN|||de===Gemeindegrenzen (7,8)|||en===City-districts (7,8)
+###HOEHENLINIE@@@LINIEN|||de===Höhenlinien|||en===Contours
+###KREISGRENZE@@@LINIEN|||de===Kreisgrenzen (6)|||en===County borders (6)
+###REGIERUNGSBEZIRKSGRENZE|||LINIEN###deu===Regierungsbezirksgrenzen (5)|||en===State-district borders (5)
+###STAATSGRENZE@@@LINIEN|||de===Staatsgrenzen (2)|||en===National borders (2)
+###UEBERLANDLEITUNG@@@LINIEN|||de===Überlandleitungen|||en===Transmission lines
+###ANBETUNGSORT@@@PUNKTE|||de===Anbetungsorte|||en===Place of worship
+###BUS@@@PUNKTE|||de===Bus|||en===Bus
+###GELDAUTOMAT@@@PUNKTE|||de===Geldautomat|||en===Atm
+###STRASSENBAHN@@@PUNKTE|||de===Straßenbahn|||en===Tram
+###U-BAHN@@@PUNKTE|||de===U-Bahn|||en===Subway
+###UNTERKUNFT@@@PUNKTE|||de===Unterkunft|||en===Accommodation
+###INFORMATION@@@PUNKTE|||de===Information|||en===Information
+###BAUM@@@PUNKTE|||de===Baum|||en===Tree
+###SCHLAGBAUM@@@PUNKTE|||de===Schlagbaum|||en===Liftgate
+###TOR@@@PUNKTE|||de===Tor|||en===Gate
+###MUSEUM@@@PUNKTE|||de===Museum|||en===Museum
+###AUSSICHTSPUNKT@@@PUNKTE|||de===Aussichtspunkt|||en===Viewpoint
 ENDE_THEME_CONFIGURATOR-->
   <!-- -->
   <!-- -->

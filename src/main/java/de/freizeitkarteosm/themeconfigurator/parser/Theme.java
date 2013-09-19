@@ -84,7 +84,7 @@ class Theme {
             final Map<Locale, String> names = new HashMap<Locale, String>();
             for (String t : translations) {
                 final String[] tt = t.split("===");
-                names.put(Locale.forLanguageTag(tt[0]), tt[1]);
+                names.put(new Locale(tt[0]), tt[1]);
             }
 
             int startLine = -1;
