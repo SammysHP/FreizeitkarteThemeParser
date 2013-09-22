@@ -49,14 +49,14 @@ public class ThemeTest {
 
         option = options.get(0);
         assertEquals("Ackerland", option.getName(Locale.GERMAN));
-        assertEquals(316, option.getStartLine());
-        assertEquals(326, option.getEndLine());
+        assertEquals(316, (int) option.getStartLines().get(0));
+        assertEquals(326, (int) option.getEndLines().get(0));
         assertFalse(option.getStatus());
 
         option = options.get(1);
         assertEquals("Naturschutzgebiete", option.getName(Locale.GERMAN));
-        assertEquals(1477, option.getStartLine());
-        assertEquals(1484, option.getEndLine());
+        assertEquals(1477, (int) option.getStartLines().get(0));
+        assertEquals(1484, (int) option.getEndLines().get(0));
         assertTrue(option.getStatus());
     }
 

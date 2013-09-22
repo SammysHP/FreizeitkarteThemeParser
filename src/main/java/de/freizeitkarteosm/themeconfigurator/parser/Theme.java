@@ -87,8 +87,8 @@ class Theme {
                 names.put(new Locale(tt[0]), tt[1]);
             }
 
-            int startLine = -1;
-            int endLine = -1;
+            final List<Integer> startLines = new ArrayList<Integer>();
+            final List<Integer> endLines = new ArrayList<Integer>();
             boolean status = false;
 
             final String patternStart = PATTERN_OPTION_START_PRE + optionId + PATTERN_OPTION_START_POST;
@@ -96,22 +96,22 @@ class Theme {
 
             for (int i = 0; i < lineTheme.length; i++) {
                 if (lineTheme[i].contains(patternStart)) {
-                    startLine = i;
+                    startLines.add(i);
                     status = lineTheme[i].endsWith(PATTERN_COMMENT_END);
                 }
 
                 if (lineTheme[i].contains(patternEnd)) {
-                    endLine = i;
+                    endLines.add(i);
                 }
             }
 
-            if (startLine == -1 || endLine == -1) {
-                System.out.println("Start or end line for option \"" + optionId + "\" not found, skipping.");
+            if (startLines.size() == 0 || endLines.size() == 0) {
+                System.out.println("Start or end lines for option \"" + optionId + "\" not found, skipping.");
                 continue;
             }
 
             final MutableThemeOptionGroup group = groups.get(groupId);
-            group.addOption(new MutableThemeOption(group, names, optionId, status, startLine, endLine));
+            group.addOption(new MutableThemeOption(group, names, optionId, status, startLines, endLines));
         }
     }
 
@@ -152,8 +152,13 @@ class Theme {
      */
     public String compile() {
         for (ThemeOption option : getOptions()) {
-            lineTheme[option.getStartLine()] = PATTERN_COMMENT_START + ' ' + PATTERN_OPTION_START_PRE + option.getId() + PATTERN_OPTION_START_POST + (option.getStatus() ? ' ' + PATTERN_COMMENT_END : "");
-            lineTheme[option.getEndLine()] = (option.getStatus() ? PATTERN_COMMENT_START + ' ' : "") + PATTERN_OPTION_END_PRE + option.getId() + PATTERN_OPTION_END_POST + ' ' + PATTERN_COMMENT_END;
+            for (int i : option.getStartLines()) {
+                lineTheme[i] = PATTERN_COMMENT_START + ' ' + PATTERN_OPTION_START_PRE + option.getId() + PATTERN_OPTION_START_POST + (option.getStatus() ? ' ' + PATTERN_COMMENT_END : "");
+            }
+
+            for (int i : option.getEndLines()) {
+                lineTheme[i] = (option.getStatus() ? PATTERN_COMMENT_START + ' ' : "") + PATTERN_OPTION_END_PRE + option.getId() + PATTERN_OPTION_END_POST + ' ' + PATTERN_COMMENT_END;
+            }
         }
 
         return Util.combine("\n", lineTheme);

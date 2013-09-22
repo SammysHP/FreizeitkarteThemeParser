@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.junit.Test;
@@ -34,13 +36,24 @@ public class ThemeOptionTest {
     public void lines() {
         final MutableThemeOption option = new MutableThemeOption();
 
-        assertEquals(-1, option.getStartLine());
-        assertEquals(-1, option.getEndLine());
+        assertEquals(0, option.getStartLines().size());
+        assertEquals(0, option.getEndLines().size());
 
-        option.setStartLine(20);
-        option.setEndLine(25);
+        final List<Integer> lines = new ArrayList<Integer>();
 
-        assertEquals(20, option.getStartLine());
-        assertEquals(25, option.getEndLine());
+        lines.add(20);
+        lines.add(40);
+        option.setStartLines(lines);
+
+        lines.clear();
+        lines.add(25);
+        lines.add(45);
+        option.setEndLines(lines);
+
+        assertEquals(2, option.getStartLines().size());
+        assertEquals(2, option.getEndLines().size());
+
+        assertEquals(20, (int) option.getStartLines().get(0));
+        assertEquals(25, (int) option.getEndLines().get(0));
     }
 }

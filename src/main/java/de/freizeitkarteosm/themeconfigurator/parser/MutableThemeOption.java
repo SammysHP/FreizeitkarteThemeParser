@@ -1,6 +1,9 @@
 package de.freizeitkarteosm.themeconfigurator.parser;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -11,9 +14,9 @@ class MutableThemeOption implements ThemeOption {
 
     private boolean status;
 
-    private int startLine;
+    private List<Integer> startLines;
 
-    private int endLine;
+    private List<Integer> endLines;
 
     private String id;
 
@@ -24,8 +27,8 @@ class MutableThemeOption implements ThemeOption {
         group = null;
         name = new HashMap<String, String>();
         status = false;
-        startLine = -1;
-        endLine = -1;
+        startLines = new ArrayList<Integer>();
+        endLines = new ArrayList<Integer>();
     }
 
     /**
@@ -46,8 +49,8 @@ class MutableThemeOption implements ThemeOption {
      */
     public MutableThemeOption(final ThemeOptionGroup group,
             final Map<Locale, String> name, final String id,
-            final boolean status, final int startLine,
-            final int endLine) {
+            final boolean status, final List<Integer> startLines,
+            final List<Integer> endLines) {
         this.group = group;
 
         this.name = new HashMap<String, String>();
@@ -57,8 +60,8 @@ class MutableThemeOption implements ThemeOption {
 
         this.id = id;
         this.status = status;
-        this.startLine = startLine;
-        this.endLine = endLine;
+        this.startLines = new ArrayList<Integer>(startLines);
+        this.endLines = new ArrayList<Integer>(endLines);
     }
 
     @Override
@@ -118,8 +121,8 @@ class MutableThemeOption implements ThemeOption {
     }
 
     @Override
-    public int getStartLine() {
-        return startLine;
+    public List<Integer> getStartLines() {
+        return Collections.unmodifiableList(startLines);
     }
 
     /**
@@ -129,14 +132,14 @@ class MutableThemeOption implements ThemeOption {
      *            The first line of the corresponding section
      * @return This option
      */
-    public MutableThemeOption setStartLine(final int line) {
-        startLine = line;
+    public MutableThemeOption setStartLines(final List<Integer> lines) {
+        startLines = new ArrayList<Integer>(lines);
         return this;
     }
 
     @Override
-    public int getEndLine() {
-        return endLine;
+    public List<Integer> getEndLines() {
+        return Collections.unmodifiableList(endLines);
     }
 
     /**
@@ -146,8 +149,8 @@ class MutableThemeOption implements ThemeOption {
      *            The last line of the corresponding section
      * @return This option
      */
-    public MutableThemeOption setEndLine(final int line) {
-        endLine = line;
+    public MutableThemeOption setEndLines(final List<Integer> lines) {
+        endLines = new ArrayList<Integer>(lines);
         return this;
     }
 

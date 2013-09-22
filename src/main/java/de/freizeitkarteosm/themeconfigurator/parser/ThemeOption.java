@@ -1,5 +1,6 @@
 package de.freizeitkarteosm.themeconfigurator.parser;
 
+import java.util.List;
 import java.util.Locale;
 
 public interface ThemeOption {
@@ -53,14 +54,14 @@ public interface ThemeOption {
      * 
      * @return The first line of the corresponding section
      */
-    public int getStartLine();
+    public List<Integer> getStartLines();
 
     /**
      * Get the line where the section ends in the theme.
      * 
      * @return The last line of the corresponding section
      */
-    public int getEndLine();
+    public List<Integer> getEndLines();
 
     /**
      * Get the id of this option.
