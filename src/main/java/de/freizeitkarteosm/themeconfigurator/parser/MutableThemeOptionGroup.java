@@ -31,7 +31,7 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
         // We use a LinkedHashMap to preserve the order of the options as they are in the theme file.
         this.name = new LinkedHashMap<String, String>();
         for (Locale l : name.keySet()) {
-            this.name.put(l.getISO3Language(), name.get(l));
+            this.name.put(l.getLanguage(), name.get(l));
         }
 
         options = new ArrayList<ThemeOption>();
@@ -58,7 +58,7 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
      */
     public MutableThemeOptionGroup setName(final Locale locale,
             final String name) {
-        this.name.put(locale.getISO3Language(), name);
+        this.name.put(locale.getLanguage(), name);
         return this;
     }
 

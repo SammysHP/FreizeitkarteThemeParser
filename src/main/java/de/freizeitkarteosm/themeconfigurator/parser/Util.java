@@ -15,7 +15,7 @@ class Util {
     }
 
     public static String getTranslation(final Map<String, String> translations, final Locale locale, final boolean allowDefault) {
-        final String language = locale.getISO3Language();
+        final String language = locale.getLanguage();
 
         // try requested language first
         if (translations.containsKey(language)) {

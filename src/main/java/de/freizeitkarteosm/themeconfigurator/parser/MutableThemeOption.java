@@ -55,7 +55,7 @@ class MutableThemeOption implements ThemeOption {
 
         this.name = new HashMap<String, String>();
         for (Locale l : name.keySet()) {
-            this.name.put(l.getISO3Language(), name.get(l));
+            this.name.put(l.getLanguage(), name.get(l));
         }
 
         this.id = id;
@@ -116,7 +116,7 @@ class MutableThemeOption implements ThemeOption {
      * @return This option
      */
     public MutableThemeOption setName(final Locale locale, final String name) {
-        this.name.put(locale.getISO3Language(), name);
+        this.name.put(locale.getLanguage(), name);
         return this;
     }
 
