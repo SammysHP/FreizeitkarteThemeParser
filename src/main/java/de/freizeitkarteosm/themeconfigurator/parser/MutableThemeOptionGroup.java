@@ -83,4 +83,39 @@ class MutableThemeOptionGroup implements ThemeOptionGroup {
     public String toString() {
         return getName();
     }
+
+    @Override
+    public void enable() {
+        for (ThemeOption option : options) {
+            option.enable();
+        }
+    }
+
+    @Override
+    public void disable() {
+        for (ThemeOption option : options) {
+            option.disable();
+        }
+    }
+
+    @Override
+    public GroupStatus getStatus() {
+        int enabledCount = 0;
+
+        for (ThemeOption option : options) {
+            if (option.getStatus()) {
+                enabledCount++;
+            }
+        }
+
+        if (options.isEmpty()) {
+            return GroupStatus.ALL;
+        } else if (enabledCount == 0) {
+            return GroupStatus.NONE;
+        } else if (enabledCount != options.size()) {
+            return GroupStatus.SOME;
+        } else {
+            return GroupStatus.ALL;
+        }
+    }
 }
